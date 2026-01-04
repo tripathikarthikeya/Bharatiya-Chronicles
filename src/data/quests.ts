@@ -1,5 +1,7 @@
 import questHampi from "@/assets/quest-hampi.jpg";
 import questVaranasi from "@/assets/quest-varanasi.jpg";
+import questAjanta from "@/assets/quest-ajanta.jpg";
+import questKhajuraho from "@/assets/quest-khajuraho.jpg";
 
 export interface Quest {
   id: string;
@@ -34,7 +36,7 @@ export const trendingQuests: Quest[] = [
     id: "temples-khajuraho",
     title: "Hidden Temples",
     subtitle: "Khajuraho",
-    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400",
+    image: questKhajuraho,
     difficulty: "medium",
     points: 250,
     completedBy: 789,
@@ -43,7 +45,7 @@ export const trendingQuests: Quest[] = [
     id: "ajanta-mysteries",
     title: "Cave Mysteries",
     subtitle: "Ajanta",
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400",
+    image: questAjanta,
     difficulty: "hard",
     points: 400,
     completedBy: 321,
