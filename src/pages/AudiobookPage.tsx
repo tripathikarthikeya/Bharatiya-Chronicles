@@ -47,7 +47,7 @@ const audiobooks: Audiobook[] = [
     id: "ramayana",
     title: "The Ramayana",
     narrator: "AI Sabri",
-    duration: "8h 30m",
+    duration: "5min 20sec",
     chapters: 7,
     image: ramayanaThumbnail,
     category: "Epic",
