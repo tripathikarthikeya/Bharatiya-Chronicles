@@ -1,3 +1,6 @@
+import questHampi from "@/assets/quest-hampi.jpg";
+import questVaranasi from "@/assets/quest-varanasi.jpg";
+
 export interface Quest {
   id: string;
   title: string;
@@ -13,7 +16,7 @@ export const trendingQuests: Quest[] = [
     id: "silk-route-varanasi",
     title: "The Lost Silk Route",
     subtitle: "Varanasi",
-    image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400",
+    image: questVaranasi,
     difficulty: "legendary",
     points: 500,
     completedBy: 234,
@@ -22,7 +25,7 @@ export const trendingQuests: Quest[] = [
     id: "secrets-hampi",
     title: "Secrets of Hampi",
     subtitle: "Karnataka",
-    image: "https://images.unsplash.com/photo-1590766940554-634dbfb1ac46?w=400",
+    image: questHampi,
     difficulty: "hard",
     points: 350,
     completedBy: 456,
