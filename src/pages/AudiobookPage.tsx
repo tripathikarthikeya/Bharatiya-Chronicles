@@ -41,7 +41,7 @@ const audiobooks: Audiobook[] = [
     category: "Epic",
     description: "The great Indian epic of dharma, war, and wisdom.",
     sampleText: "In the ancient kingdom of Hastinapura, there lived two sets of cousins, the Pandavas and the Kauravas, whose rivalry would shape the destiny of the world. The Mahabharata tells the story of their struggle, a tale woven with threads of dharma, love, betrayal, and the eternal quest for righteousness.",
-    audioSrc: mahabharataAudio,
+    audioSrc: ramayanaAudio,
   },
   {
     id: "ramayana",
@@ -53,7 +53,7 @@ const audiobooks: Audiobook[] = [
     category: "Epic",
     description: "The timeless tale of Lord Rama and Sita.",
     sampleText: "Long ago in the kingdom of Ayodhya, there lived a prince named Rama, the embodiment of virtue and righteousness. His story is one of love, sacrifice, and the triumph of good over evil. Join me as we journey through the forests of ancient India, following the path of this divine prince.",
-    audioSrc: ramayanaAudio,
+    audioSrc: mahabharataAudio,
   },
   {
     id: "panchatantra",
