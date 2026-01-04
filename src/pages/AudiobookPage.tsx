@@ -11,6 +11,12 @@ import {
 import { aiCompanions } from "@/data/companions";
 import { toast } from "sonner";
 
+// Import assets
+import mahabharataThumbnail from "@/assets/mahabharata-thumbnail.jpg";
+import ramayanaThumbnail from "@/assets/ramayana-thumbnail.jpg";
+import mahabharataAudio from "@/assets/audio/mahabharata-story.m4a";
+import ramayanaAudio from "@/assets/audio/ramayana-story.m4a";
+
 interface Audiobook {
   id: string;
   title: string;
@@ -21,6 +27,7 @@ interface Audiobook {
   category: string;
   description: string;
   sampleText: string;
+  audioSrc?: string;
 }
 
 const audiobooks: Audiobook[] = [
@@ -30,10 +37,11 @@ const audiobooks: Audiobook[] = [
     narrator: "AI Arjun",
     duration: "12h 45m",
     chapters: 18,
-    image: "https://images.unsplash.com/photo-1567591370504-80d5e5d6e5cc?w=400",
+    image: mahabharataThumbnail,
     category: "Epic",
     description: "The great Indian epic of dharma, war, and wisdom.",
     sampleText: "In the ancient kingdom of Hastinapura, there lived two sets of cousins, the Pandavas and the Kauravas, whose rivalry would shape the destiny of the world. The Mahabharata tells the story of their struggle, a tale woven with threads of dharma, love, betrayal, and the eternal quest for righteousness.",
+    audioSrc: mahabharataAudio,
   },
   {
     id: "ramayana",
@@ -41,10 +49,11 @@ const audiobooks: Audiobook[] = [
     narrator: "AI Sabri",
     duration: "8h 30m",
     chapters: 7,
-    image: "https://images.unsplash.com/photo-1609619385002-f40f1df9b5a4?w=400",
+    image: ramayanaThumbnail,
     category: "Epic",
     description: "The timeless tale of Lord Rama and Sita.",
     sampleText: "Long ago in the kingdom of Ayodhya, there lived a prince named Rama, the embodiment of virtue and righteousness. His story is one of love, sacrifice, and the triumph of good over evil. Join me as we journey through the forests of ancient India, following the path of this divine prince.",
+    audioSrc: ramayanaAudio,
   },
   {
     id: "panchatantra",
@@ -178,9 +187,52 @@ export default function AudiobookPage() {
         setIsPlaying(true);
       }
     } else {
-      // First time playing - generate audio
-      generateAudio(selectedBook.sampleText, selectedCompanion.voiceId);
+      // Check if book has a pre-recorded audio file
+      if (selectedBook.audioSrc) {
+        playPreRecordedAudio(selectedBook.audioSrc);
+      } else {
+        // Fall back to AI-generated audio
+        generateAudio(selectedBook.sampleText, selectedCompanion.voiceId);
+      }
     }
+  };
+
+  const playPreRecordedAudio = (audioSrc: string) => {
+    setIsLoading(true);
+    
+    const audio = new Audio(audioSrc);
+    audioRef.current = audio;
+    
+    audio.volume = isMuted ? 0 : volume[0] / 100;
+    
+    audio.addEventListener('loadedmetadata', () => {
+      setDuration(audio.duration);
+      setIsLoading(false);
+    });
+    
+    audio.addEventListener('timeupdate', () => {
+      setCurrentTime(audio.currentTime);
+      if (audio.duration > 0) {
+        setProgress([(audio.currentTime / audio.duration) * 100]);
+      }
+    });
+    
+    audio.addEventListener('ended', () => {
+      setIsPlaying(false);
+      setProgress([0]);
+      setCurrentTime(0);
+    });
+
+    audio.addEventListener('canplaythrough', () => {
+      audio.play();
+      setIsPlaying(true);
+      toast.success(`Playing ${selectedBook?.title}`);
+    });
+
+    audio.addEventListener('error', () => {
+      setIsLoading(false);
+      toast.error('Failed to load audio. Please try again.');
+    });
   };
 
   const handleCompanionChange = (companion: typeof aiCompanions[0]) => {
