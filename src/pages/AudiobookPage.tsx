@@ -35,7 +35,7 @@ const audiobooks: Audiobook[] = [
     id: "mahabharata",
     title: "The Mahabharata",
     narrator: "AI Arjun",
-    duration: "12h 45m",
+    duration: "3min 19sec",
     chapters: 18,
     image: mahabharataThumbnail,
     category: "Epic",
