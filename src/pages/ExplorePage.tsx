@@ -32,7 +32,7 @@ export default function ExplorePage() {
           onSelect={setSelectedCompanion}
         />
 
-        {/* Trending Quests */}
+        {/* Continue Quests */}
         <TrendingQuests />
 
         {/* Category Grid */}
