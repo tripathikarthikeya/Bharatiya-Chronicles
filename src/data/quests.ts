@@ -11,6 +11,8 @@ export interface Quest {
   difficulty: "easy" | "medium" | "hard" | "legendary";
   points: number;
   completedBy: number;
+  hasGame?: boolean;
+  gameRoute?: string;
 }
 
 export const trendingQuests: Quest[] = [
@@ -22,6 +24,8 @@ export const trendingQuests: Quest[] = [
     difficulty: "legendary",
     points: 500,
     completedBy: 234,
+    hasGame: true,
+    gameRoute: "/game/silk-route",
   },
   {
     id: "secrets-hampi",

@@ -16,6 +16,7 @@ import ARScannerPage from "./pages/ARScannerPage";
 import AudiobookPage from "./pages/AudiobookPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
+import SilkRouteGamePage from "./pages/SilkRouteGamePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,9 @@ const App = () => (
           <Route path="/location/:id" element={<LocationDetailPage />} />
           <Route path="/category/:name" element={<CategoryPage />} />
           <Route path="/quest/:id" element={<QuestDetailPage />} />
+          
+          {/* Game Pages */}
+          <Route path="/game/silk-route" element={<SilkRouteGamePage />} />
 
           {/* User Pages */}
           <Route path="/profile" element={<ProfilePage />} />
